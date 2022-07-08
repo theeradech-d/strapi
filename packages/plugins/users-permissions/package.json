@@ -27,26 +27,43 @@
     "test:front:watch:ce": "cross-env IS_EE=false jest --config ./jest.config.front.js --watchAll"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@strapi/design-system": "1.2.0",
     "@strapi/helper-plugin": "4.2.2",
+    "@strapi/icons": "1.2.0",
     "@strapi/utils": "4.2.2",
+    "axios": "0.25.0",
     "bcryptjs": "2.4.3",
+    "formik": "^2.2.9",
     "grant-koa": "5.4.8",
-    "jsonwebtoken": "^8.1.0",
+    "history": "^4.9.0",
+    "immer": "9.0.6",
+    "jsonwebtoken": "8.5.1",
     "koa2-ratelimit": "^0.9.0",
     "lodash": "4.17.21",
+    "match-sorter": "^4.0.2",
+    "prop-types": "^15.7.2",
     "purest": "4.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intl": "5.20.2",
-    "react-redux": "7.2.8",
-    "react-router": "^5.2.0",
+    "react-is": "^17.0.2",
+    "react-query": "3.24.3",
     "react-router-dom": "5.2.0",
-    "redux-saga": "^0.16.0",
-    "request": "^2.83.0",
-    "url-join": "4.0.1"
+    "styled-components": "5.3.3",
+    "url-join": "4.0.1",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
-    "koa": "^2.13.1"
+    "@testing-library/dom": "^8.14.0",
+    "@testing-library/react": "11.2.7",
+    "@testing-library/user-event": "13.5.0",
+    "msw": "0.42.3"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^4.0.0",
+    "koa": "^2.13.3"
   },
   "engines": {
     "node": ">=14.19.1 <=16.x.x",
