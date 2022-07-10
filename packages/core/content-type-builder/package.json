@@ -27,22 +27,40 @@
     "test:front:watch:ce": "cross-env IS_EE=false jest --config ./jest.config.front.js --watchAll"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@sindresorhus/slugify": "1.1.0",
+    "@strapi/design-system": "1.2.0",
     "@strapi/generators": "4.2.2",
     "@strapi/helper-plugin": "4.2.2",
+    "@strapi/icons": "1.2.0",
     "@strapi/utils": "4.2.2",
-    "fs-extra": "10.0.0",
+    "axios": "0.25.0",
+    "fs-extra": "10.1.0",
+    "history": "^4.9.0",
+    "immer": "9.0.6",
     "lodash": "4.17.21",
+    "match-sorter": "^4.0.2",
     "pluralize": "^8.0.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
     "react-intl": "5.20.2",
+    "react-is": "^17.0.2",
     "react-redux": "7.2.8",
-    "react-router": "^5.2.0",
     "react-router-dom": "5.2.0",
+    "react-virtualized": "^9.22.3",
     "redux": "^4.0.1",
     "reselect": "^4.0.0",
+    "styled-components": "5.3.3",
     "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "@testing-library/react": "11.2.7"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^4.0.0"
   },
   "engines": {
     "node": ">=14.19.1 <=16.x.x",

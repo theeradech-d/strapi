@@ -3,13 +3,11 @@ const path = require('path');
 const packageJson = require('./package.json');
 
 const nodeModules = [];
-[
-  ...Object.keys(packageJson.dependencies),
-  ...Object.keys(packageJson.peerDependencies),
-  ...Object.keys(packageJson.devDependencies),
-].forEach(module => {
-  nodeModules.push(new RegExp(`^${module}(/.+)?$`));
-});
+[...Object.keys(packageJson.dependencies), ...Object.keys(packageJson.devDependencies)].forEach(
+  module => {
+    nodeModules.push(new RegExp(`^${module}(/.+)?$`));
+  }
+);
 
 module.exports = {
   entry: `${__dirname}/lib/src/index.js`,

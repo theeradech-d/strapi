@@ -1,13 +1,7 @@
 module.exports = {
   parser: 'babel-eslint',
-  extends: [
-    'airbnb',
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:redux-saga/recommended',
-    'prettier',
-  ],
-  plugins: ['react', 'redux-saga', 'react-hooks', 'import', 'jsx-a11y'],
+  extends: ['airbnb', 'eslint:recommended', 'plugin:react/recommended', 'prettier'],
+  plugins: ['react', 'react-hooks', 'import', 'jsx-a11y'],
   env: {
     browser: true,
     commonjs: true,
