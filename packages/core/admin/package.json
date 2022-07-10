@@ -38,7 +38,7 @@
   "dependencies": {
     "@babel/polyfill": "7.12.1",
     "@casl/ability": "^5.4.3",
-    "@fingerprintjs/fingerprintjs": "3.3.2",
+    "@fingerprintjs/fingerprintjs": "3.3.3",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -145,5 +145,14 @@
   "engines": {
     "node": ">=14.19.1 <=16.x.x",
     "npm": ">=6.0.0"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "outputs": [
+          "./build"
+        ]
+      }
+    }
   }
 }
