@@ -39,6 +39,7 @@
     "graphql-type-json": "^0.3.2",
     "graphql-type-long": "^0.1.1",
     "graphql-upload": "^13.0.0",
+    "koa": "2.13.3",
     "lodash": "4.17.21",
     "nexus": "1.2.0",
     "pluralize": "^8.0.0",
@@ -48,8 +49,7 @@
     "cross-env": "^7.0.3"
   },
   "peerDependencies": {
-    "@strapi/strapi": "^4.0.0",
-    "koa": "^2.13.3"
+    "@strapi/strapi": "^4.0.0"
   },
   "engines": {
     "node": ">=14.19.1 <=16.x.x",
