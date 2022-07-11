@@ -2,7 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const { isObject } = require('lodash');
+const isObject = require('lodash/isObject');
 const webpackConfig = require('../webpack.config');
 const {
   getCorePluginsPath,

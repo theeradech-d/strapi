@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require('lodash');
+const clone = require('lodash/clone');
 const { ApplicationError } = require('@strapi/utils').errors;
 const userService = require('../user');
 const { SUPER_ADMIN_CODE } = require('../constants');
@@ -128,7 +128,7 @@ describe('User', () => {
         isActive: true,
         registrationToken: 'another-token',
       };
-      const expected = _.clone(input);
+      const expected = clone(input);
       const result = await userService.create(input);
 
       expect(result).toMatchObject(expected);

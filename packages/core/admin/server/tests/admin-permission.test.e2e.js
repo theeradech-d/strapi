@@ -1,6 +1,7 @@
 'use strict';
 
-const _ = require('lodash');
+const cloneDeep = require('lodash/cloneDeep');
+const sortBy = require('lodash/sortBy');
 
 const { createAuthRequest } = require('../../../../../test/helpers/request');
 const { createStrapiInstance } = require('../../../../../test/helpers/strapi');
@@ -29,9 +30,9 @@ describe('Role CRUD End to End', () => {
     expect(res.statusCode).toBe(200);
 
     // Data is sorted to avoid error with snapshot when the data is not in the same order
-    const sortedData = _.cloneDeep(res.body.data);
+    const sortedData = cloneDeep(res.body.data);
     Object.keys(sortedData.sections).forEach(sectionName => {
-      sortedData.sections[sectionName] = _.sortBy(sortedData.sections[sectionName], ['action']);
+      sortedData.sections[sectionName] = sortBy(sortedData.sections[sectionName], ['action']);
     });
     sortedData.conditions = sortedData.conditions.sort();
 

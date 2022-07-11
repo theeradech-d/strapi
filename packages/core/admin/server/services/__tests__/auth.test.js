@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require('lodash');
+const get = require('lodash/get');
 const { ApplicationError } = require('@strapi/utils').errors;
 
 const {
@@ -186,7 +186,7 @@ describe('Auth', () => {
         config: {
           ...config,
           get(path, def) {
-            return _.get(path, def);
+            return get(path, def);
           },
         },
         query() {
@@ -228,7 +228,7 @@ describe('Auth', () => {
         config: {
           ...config,
           get(path, def) {
-            return _.get(path, def);
+            return get(path, def);
           },
         },
         query() {

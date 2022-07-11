@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require('lodash');
+const omit = require('lodash/omit');
 const { merge } = require('lodash/fp');
 const permissionService = require('../permission');
 const { toPermission } = require('../../domain/permission');
@@ -73,7 +73,7 @@ describe('Permission Service', () => {
 
       expect(sanitizedPermission.foo).toBeUndefined();
       expect(sanitizedPermission).toMatchObject({
-        ..._.omit(permission, 'foo'),
+        ...omit(permission, 'foo'),
       });
     });
   });

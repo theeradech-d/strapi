@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const { pick } = require('lodash');
+const pick = require('lodash/pick');
 
 const PROJECT_SETTINGS_FILE_INPUTS = ['menuLogo'];
 const DEFAULT_PROJECT_SETTINGS = {

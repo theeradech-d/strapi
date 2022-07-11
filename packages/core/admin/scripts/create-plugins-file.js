@@ -1,7 +1,7 @@
 'use strict';
 
 const { join, resolve, relative } = require('path');
-const { camelCase } = require('lodash');
+const camelCase = require('lodash/camelCase');
 const fs = require('fs-extra');
 
 const CORE_PLUGINS = ['content-type-builder', 'email', 'upload'];

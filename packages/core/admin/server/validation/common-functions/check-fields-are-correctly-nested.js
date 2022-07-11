@@ -1,9 +1,9 @@
 'use strict';
 
-const _ = require('lodash');
+const isNil = require('lodash/isNil');
 
 const checkFieldsAreCorrectlyNested = fields => {
-  if (_.isNil(fields)) {
+  if (isNil(fields)) {
     // Only check if the fields exist
     return true;
   } else if (!Array.isArray(fields)) {

@@ -1,4 +1,7 @@
-import { merge, get, isEmpty, set } from 'lodash';
+import merge from 'lodash/merge';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
 import findMatchingPermission from './findMatchingPermissions';
 /**
  * Creates the default condition form: { [conditionId]: false }

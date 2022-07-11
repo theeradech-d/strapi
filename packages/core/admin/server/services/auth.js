@@ -1,7 +1,7 @@
 'use strict';
 
 const bcrypt = require('bcryptjs');
-const _ = require('lodash');
+const pick = require('lodash/pick');
 const { getAbsoluteAdminUrl } = require('@strapi/utils');
 const { ApplicationError } = require('@strapi/utils').errors;
 const { getService } = require('../utils');
@@ -78,7 +78,7 @@ const forgotPassword = async ({ email } = {}) => {
       strapi.config.get('admin.forgotPassword.emailTemplate'),
       {
         url,
-        user: _.pick(user, ['email', 'firstname', 'lastname', 'username']),
+        user: pick(user, ['email', 'firstname', 'lastname', 'username']),
       }
     )
     .catch(err => {

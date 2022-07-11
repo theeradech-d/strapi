@@ -1,7 +1,10 @@
 'use strict';
 
 const { join } = require('path');
-const { flow, camelCase, upperFirst, lowerCase } = require('lodash');
+const flow = require('lodash/flow');
+const camelCase = require('lodash/camelCase');
+const upperFirst = require('lodash/upperFirst');
+const lowerCase = require('lodash/lowerCase');
 const fileExistsInPackages = require('../utils/fileExistsInPackages');
 const getPluginList = require('../utils/getPluginList');
 const packagesFolder = require('../utils/packagesFolder');

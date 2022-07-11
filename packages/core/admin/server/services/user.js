@@ -1,6 +1,8 @@
 'use strict';
 
-const _ = require('lodash');
+const pick = require('lodash/pick');
+const omit = require('lodash/omit');
+const has = require('lodash/has');
 const { defaults } = require('lodash/fp');
 const { stringIncludes } = require('@strapi/utils');
 const { ValidationError } = require('@strapi/utils').errors;
@@ -9,7 +11,7 @@ const { password: passwordValidator } = require('../validation/common-validators
 const { getService } = require('../utils');
 const { SUPER_ADMIN_CODE } = require('./constants');
 
-const sanitizeUserRoles = role => _.pick(role, ['id', 'name', 'description', 'code']);
+const sanitizeUserRoles = role => pick(role, ['id', 'name', 'description', 'code']);
 
 /**
  * Remove private user fields
@@ -17,7 +19,7 @@ const sanitizeUserRoles = role => _.pick(role, ['id', 'name', 'description', 'co
  */
 const sanitizeUser = user => {
   return {
-    ..._.omit(user, ['password', 'resetPasswordToken', 'registrationToken', 'roles']),
+    ...omit(user, ['password', 'resetPasswordToken', 'registrationToken', 'roles']),
     roles: user.roles && user.roles.map(sanitizeUserRoles),
   };
 };
@@ -33,7 +35,7 @@ const create = async attributes => {
     ...attributes,
   };
 
-  if (_.has(attributes, 'password')) {
+  if (has(attributes, 'password')) {
     userInfo.password = await getService('auth').hashPassword(attributes.password);
   }
 
@@ -54,7 +56,7 @@ const create = async attributes => {
  */
 const updateById = async (id, attributes) => {
   // Check at least one super admin remains
-  if (_.has(attributes, 'roles')) {
+  if (has(attributes, 'roles')) {
     const lastAdminUser = await isLastSuperAdminUser(id);
     const superAdminRole = await getService('role').getSuperAdminWithUsersCount();
     const willRemoveSuperAdminRole = !stringIncludes(attributes.roles, superAdminRole.id);
@@ -73,7 +75,7 @@ const updateById = async (id, attributes) => {
   }
 
   // hash password if a new one is sent
-  if (_.has(attributes, 'password')) {
+  if (has(attributes, 'password')) {
     const hashedPassword = await getService('auth').hashPassword(attributes.password);
 
     return strapi.query('admin::user').update({
@@ -148,7 +150,7 @@ const findRegistrationInfo = async registrationToken => {
     return undefined;
   }
 
-  return _.pick(user, ['email', 'firstname', 'lastname']);
+  return pick(user, ['email', 'firstname', 'lastname']);
 };
 
 /**

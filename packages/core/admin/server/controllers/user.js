@@ -1,6 +1,7 @@
 'use strict';
 
-const _ = require('lodash');
+const pick = require('lodash/pick');
+const has = require('lodash/has');
 const { ApplicationError } = require('@strapi/utils').errors;
 const {
   validateUserCreationInput,
@@ -16,13 +17,7 @@ module.exports = {
 
     await validateUserCreationInput(body);
 
-    const attributes = _.pick(body, [
-      'firstname',
-      'lastname',
-      'email',
-      'roles',
-      'preferedLanguage',
-    ]);
+    const attributes = pick(body, ['firstname', 'lastname', 'email', 'roles', 'preferedLanguage']);
 
     const userAlreadyExists = await getService('user').exists({
       email: attributes.email,
@@ -77,7 +72,7 @@ module.exports = {
 
     await validateUserUpdateInput(input);
 
-    if (_.has(input, 'email')) {
+    if (has(input, 'email')) {
       const uniqueEmailCheck = await getService('user').exists({
         id: { $ne: id },
         email: input.email,

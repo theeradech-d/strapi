@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require('lodash');
+const reduce = require('lodash/reduce');
 const { uniq, startsWith, intersection } = require('lodash/fp');
 const { contentTypes: contentTypesUtils } = require('@strapi/utils');
 const { getService } = require('../utils');
@@ -29,7 +29,7 @@ const getNestedFields = (
 
   const nonAuthorizableFields = contentTypesUtils.getNonVisibleAttributes(model);
 
-  return _.reduce(
+  return reduce(
     model.attributes,
     (fields, attr, key) => {
       if (nonAuthorizableFields.includes(key)) return fields;
@@ -87,7 +87,7 @@ const getNestedFieldsWithIntermediate = (
 
   const nonAuthorizableFields = contentTypesUtils.getNonVisibleAttributes(model);
 
-  return _.reduce(
+  return reduce(
     model.attributes,
     (fields, attr, key) => {
       if (nonAuthorizableFields.includes(key)) return fields;

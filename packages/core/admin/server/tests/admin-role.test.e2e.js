@@ -1,6 +1,7 @@
 'use strict';
 
-const _ = require('lodash');
+const omit = require('lodash/omit');
+const pick = require('lodash/pick');
 
 const { createStrapiInstance } = require('../../../../../test/helpers/strapi');
 const { createAuthRequest } = require('../../../../../test/helpers/request');
@@ -17,7 +18,7 @@ const data = {
   editorRole: undefined,
 };
 
-const omitTimestamps = obj => _.omit(obj, ['updatedAt', 'createdAt']);
+const omitTimestamps = obj => omit(obj, ['updatedAt', 'createdAt']);
 
 describe('Role CRUD End to End', () => {
   let rq;
@@ -270,7 +271,7 @@ describe('Role CRUD End to End', () => {
         data.rolesWithoutUsers.push(res.body.data);
       });
       test('Cannot create a role already existing', async () => {
-        const role = _.pick(data.rolesWithoutUsers[0], ['name', 'description']);
+        const role = pick(data.rolesWithoutUsers[0], ['name', 'description']);
         const res = await rq({
           url: '/admin/roles',
           method: 'POST',

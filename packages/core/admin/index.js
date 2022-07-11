@@ -1,7 +1,8 @@
 'use strict';
 
 const path = require('path');
-const _ = require('lodash');
+const isFunction = require('lodash/isFunction');
+const camelCase = require('lodash/camelCase');
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -28,7 +29,7 @@ function getCustomWebpackConfig(dir, config) {
   if (fs.existsSync(adminConfigPath)) {
     const webpackAdminConfig = require(path.resolve(adminConfigPath));
 
-    if (_.isFunction(webpackAdminConfig)) {
+    if (isFunction(webpackAdminConfig)) {
       // Expose the devServer configuration
       if (config.devServer) {
         webpackConfig.devServer = config.devServer;
@@ -111,7 +112,7 @@ async function build({ plugins, dir, env, options, optimize, forceBuild }) {
 
 async function createPluginsJs(plugins, dest) {
   const pluginsArray = plugins.map(({ pathToPlugin, name }) => {
-    const shortName = _.camelCase(name);
+    const shortName = camelCase(name);
 
     /**
      * path.join, on windows, it uses backslashes to resolve path.

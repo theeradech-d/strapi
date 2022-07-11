@@ -2,7 +2,8 @@
 
 const path = require('path');
 const execa = require('execa');
-const _ = require('lodash');
+const isString = require('lodash/isString');
+const isEmpty = require('lodash/isEmpty');
 const { exists } = require('fs-extra');
 const { ValidationError } = require('@strapi/utils').errors;
 // eslint-disable-next-line node/no-extraneous-require
@@ -21,7 +22,7 @@ const PLUGIN_NAME_REGEX = /^[A-Za-z][A-Za-z0-9-_]+$/;
  * Validates a plugin name format
  */
 const isValidPluginName = plugin => {
-  return _.isString(plugin) && !_.isEmpty(plugin) && PLUGIN_NAME_REGEX.test(plugin);
+  return isString(plugin) && !isEmpty(plugin) && PLUGIN_NAME_REGEX.test(plugin);
 };
 
 /**

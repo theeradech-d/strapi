@@ -19,7 +19,7 @@ import { VisuallyHidden } from '@strapi/design-system/VisuallyHidden';
 import { Main } from '@strapi/design-system/Main';
 import { Table, Tbody, TFooter, Thead, Th, Tr } from '@strapi/design-system/Table';
 import { Typography } from '@strapi/design-system/Typography';
-import { get } from 'lodash';
+import get from 'lodash/get';
 import matchSorter from 'match-sorter';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';

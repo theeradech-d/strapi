@@ -1,7 +1,7 @@
 'use strict';
 
 const crypto = require('crypto');
-const _ = require('lodash');
+const merge = require('lodash/merge');
 const jwt = require('jsonwebtoken');
 
 const defaultJwtOptions = { expiresIn: '30d' };
@@ -11,7 +11,7 @@ const getTokenOptions = () => {
 
   return {
     secret,
-    options: _.merge(defaultJwtOptions, options),
+    options: merge(defaultJwtOptions, options),
   };
 };
 

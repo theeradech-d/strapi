@@ -1,4 +1,6 @@
-import { get, isEmpty } from 'lodash';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 // TODO: refacto this file to avoid eslint issues
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-unused-vars */

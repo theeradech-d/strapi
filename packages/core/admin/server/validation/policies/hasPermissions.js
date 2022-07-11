@@ -1,12 +1,13 @@
 'use strict';
 
-const _ = require('lodash');
+const isArray = require('lodash/isArray');
+const isString = require('lodash/isString');
 const { yup, validateYupSchema } = require('@strapi/utils');
 
 const hasPermissionsSchema = yup.object({
   actions: yup.array().of(
     yup.lazy(val => {
-      if (_.isArray(val)) {
+      if (isArray(val)) {
         return yup
           .array()
           .of(yup.string())
@@ -14,7 +15,7 @@ const hasPermissionsSchema = yup.object({
           .max(2);
       }
 
-      if (_.isString(val)) {
+      if (isString(val)) {
         return yup.string().required();
       }
 

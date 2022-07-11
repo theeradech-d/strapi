@@ -1,21 +1,22 @@
 'use strict';
 
-const _ = require('lodash');
+const isString = require('lodash/isString');
+const isObject = require('lodash/isObject');
 const { createPolicy } = require('@strapi/utils').policy;
 const { validateHasPermissionsInput } = require('../validation/policies/hasPermissions');
 
 const inputModifiers = [
   {
-    check: _.isString,
+    check: isString,
     transform: action => ({ action }),
   },
   {
-    check: _.isArray,
+    check: Array.isArray,
     transform: arr => ({ action: arr[0], subject: arr[1] }),
   },
   {
     // Has to be after the isArray check since _.isObject also matches arrays
-    check: _.isObject,
+    check: isObject,
     transform: perm => perm,
   },
 ];

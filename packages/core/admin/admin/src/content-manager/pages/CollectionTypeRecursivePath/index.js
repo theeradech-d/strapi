@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
-import { get } from 'lodash';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import { ErrorFallback, LoadingIndicatorPage, CheckPagePermissions } from '@strapi/helper-plugin';
 import permissions from '../../../permissions';

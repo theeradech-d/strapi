@@ -1,4 +1,7 @@
-import { get, has, isEmpty, isNil } from 'lodash';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+import isNil from 'lodash/isNil';
 
 const getDraftRelations = (data, ctSchema, components) => {
   const getDraftRelationsCount = (data, schema) =>
