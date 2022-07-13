@@ -70,7 +70,7 @@ const createTable = meta => {
           columns: [columnName],
         });
       }
-    } else if (types.isScalar(attribute.type)) {
+    } else {
       const column = createColumn(attribute.columnName || key, attribute);
 
       if (column.unique) {

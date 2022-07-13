@@ -3,13 +3,19 @@
 const { isNil, prop, omit, castArray } = require('lodash/fp');
 const debug = require('debug')('strapi::database');
 
+/**
+ * @typedef {import('knex').Knex.Transaction} Transaction
+ * @typedef {import('knex').Knex.TableBuilder} TableBuilder
+ * @typedef {import('knex').Knex.SchemaBuilder} SchemaBuilder
+ */
+
 module.exports = db => {
   const helpers = createHelpers(db);
 
   return {
     /**
      * Returns a knex schema builder instance
-     * @param {string} table - table name
+     * @param {Transaction} trx - transaction
      */
     getSchemaBuilder(trx) {
       return db.getSchemaConnection(trx);
@@ -27,8 +33,8 @@ module.exports = db => {
 
     /**
      * Creates a list of tables in a schema
-     * @param {KnexInstance} trx
      * @param {Table[]} tables
+     * @param {Transaction} trx
      */
     async createTables(tables, trx) {
       for (const table of tables) {
@@ -110,7 +116,7 @@ module.exports = db => {
 const createHelpers = db => {
   /**
    *  Creates a foreign key on a table
-   * @param {Knex.TableBuilder} tableBuilder
+   * @param {TableBuilder} tableBuilder
    * @param {ForeignKey} foreignKey
    */
   const createForeignKey = (tableBuilder, foreignKey) => {
@@ -136,7 +142,7 @@ const createHelpers = db => {
 
   /**
    * Drops a foreign key from a table
-   * @param {Knex.TableBuilder} tableBuilder
+   * @param {TableBuilder} tableBuilder
    * @param {ForeignKey} foreignKey
    */
   const dropForeignKey = (tableBuilder, foreignKey) => {
@@ -147,7 +153,7 @@ const createHelpers = db => {
 
   /**
    * Creates an index on a table
-   * @param {Knex.TableBuilder} tableBuilder
+   * @param {TableBuilder} tableBuilder
    * @param {Index} index
    */
   const createIndex = (tableBuilder, index) => {
@@ -168,7 +174,7 @@ const createHelpers = db => {
 
   /**
    * Drops an index from table
-   * @param {Knex.TableBuilder} tableBuilder
+   * @param {TableBuilder} tableBuilder
    * @param {Index} index
    */
   const dropIndex = (tableBuilder, index) => {
@@ -193,7 +199,7 @@ const createHelpers = db => {
 
   /**
    * Creates a column in a table
-   * @param {Knex.TableBuilder} tableBuilder
+   * @param {TableBuilder} tableBuilder
    * @param {Column} column
    */
   const createColumn = (tableBuilder, column) => {
@@ -226,7 +232,7 @@ const createHelpers = db => {
 
   /**
    * Drops a column from a table
-   * @param {Knex.TableBuilder} tableBuilder
+   * @param {TableBuilder} tableBuilder
    * @param {Column} column
    */
   const dropColumn = (tableBuilder, column) => {
@@ -258,6 +264,11 @@ const createHelpers = db => {
     });
   };
 
+  /**
+   * Alters a table in a database
+   * @param {SchemaBuilder} schemaBuilder
+   * @param {Table} table
+   */
   const alterTable = async (schemaBuilder, table) => {
     await schemaBuilder.alterTable(table.name, tableBuilder => {
       // Delete indexes / fks / columns
@@ -291,9 +302,7 @@ const createHelpers = db => {
 
       for (const updatedColumn of table.columns.updated) {
         debug(`Updating column ${updatedColumn.name}`);
-
         const { object } = updatedColumn;
-
         createColumn(tableBuilder, object).alter();
       }
 
@@ -326,7 +335,7 @@ const createHelpers = db => {
 
   /**
    * Drops a table from a database
-   * @param {Knex.SchemaBuilder} schemaBuilder
+   * @param {SchemaBuilder} schemaBuilder
    * @param {Table} table
    */
   const dropTable = (schemaBuilder, table) => {
