@@ -59,9 +59,6 @@
   "devDependencies": {
     "@testing-library/react": "11.2.7"
   },
-  "peerDependencies": {
-    "@strapi/strapi": "^4.0.0"
-  },
   "engines": {
     "node": ">=14.19.1 <=16.x.x",
     "npm": ">=6.0.0"

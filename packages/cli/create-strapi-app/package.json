@@ -36,8 +36,8 @@
     "test": "echo \"no tests yet\""
   },
   "dependencies": {
-    "commander": "8.2.0",
     "@strapi/generate-new": "4.2.3",
+    "commander": "8.2.0",
     "inquirer": "8.2.4"
   },
   "engines": {
