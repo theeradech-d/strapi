@@ -136,9 +136,12 @@ module.exports = ({ strapi }) => {
       const apis = this.getPluginAndApiInfo();
       for (const api of apis) {
         const apiName = api.name;
+
         const apiDirPath = path.join(this.getApiDocumentationPath(api), version);
 
-        const apiDocPath = path.join(apiDirPath, `${apiName}.json`);
+        let apiDocPath = path.join(apiDirPath, `${apiName}.json`);
+
+        const apiOverrideDocPath = path.join(apiDirPath, 'overrides', `${apiName}.json`);
 
         const apiPath = builApiEndpointPath(api);
 
@@ -156,7 +159,12 @@ module.exports = ({ strapi }) => {
           ...componentSchema,
         };
 
-        paths = { ...paths, ...apiPath };
+        if(fs.existsSync(apiOverrideDocPath)){
+          let customConfig = require(apiOverrideDocPath);
+          paths = { ...paths, ...customConfig };
+        }else {
+          paths = { ...paths, ...apiPath };
+        }
       }
 
       const fullDocJsonPath = path.join(
